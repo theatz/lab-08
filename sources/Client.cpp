@@ -53,7 +53,7 @@ std::string Client::SendRequest(std::string target, std::string id)
 // not_connected happens sometimes
 // so don't bother reporting it.
 //
-  if(ec && ec != beast::errc::not_connected)
+  if (ec && ec != beast::errc::not_connected)
     throw beast::system_error{ec};
 // If we get here then the connection is closed gracefully
   return boost::beast::buffers_to_string(res.body().data());
