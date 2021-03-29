@@ -56,9 +56,7 @@ std::string Client::SendRequest(std::string target, std::string id)
   if(ec && ec != beast::errc::not_connected)
     throw beast::system_error{ec};
 // If we get here then the connection is closed gracefully
-  std::string s = boost::beast::buffers_to_string(res.body().data());
-  return s;
-//  return res;
+  return boost::beast::buffers_to_string(res.body().data());
 }
 std::string Client::FillBody(std::string id) {
   return "input:" + id;
