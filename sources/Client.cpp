@@ -44,7 +44,7 @@ std::string Client::SendRequest(std::string target, std::string id)
   http::read(stream, buffer, res);
 
 // Write the message to standard out
-  std::cout << res << std::endl;
+//  std::cout << res << std::endl;
 
 // Gracefully close the socket
   beast::error_code ec;
@@ -56,8 +56,8 @@ std::string Client::SendRequest(std::string target, std::string id)
   if(ec && ec != beast::errc::not_connected)
     throw beast::system_error{ec};
 // If we get here then the connection is closed gracefully
-
-  return "check";
+  std::string s = boost::beast::buffers_to_string(res.body().data());
+  return s;
 //  return res;
 }
 std::string Client::FillBody(std::string id) {
